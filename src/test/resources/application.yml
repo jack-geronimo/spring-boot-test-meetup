@@ -1,0 +1,6 @@
+spring:
+  security:
+    user:
+      password: password
+  main:
+    banner-mode: "off"

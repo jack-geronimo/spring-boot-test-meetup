@@ -1,0 +1,6 @@
+INSERT INTO personal_events (reference, from_timestamp, to_timestamp, header, body, last_modified_by, last_modified_at)
+VALUES ('00000000-0000-0000-0000-000000000001', parsedatetime('2019-01-19T00:00:00+01:00', 'yyyy-MM-dd''T''HH:mm:ssX'), parsedatetime('2019-01-19T23:59:59+01:00', 'yyyy-MM-dd''T''HH:mm:ssX'), 'some Header', 'some Body', 'test', CURRENT_TIMESTAMP)
+      ,('00000000-0000-0000-0000-000000000002', parsedatetime('2019-04-19T00:00:00+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), parsedatetime('2019-04-19T23:59:59+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), 'some Header', 'some Body', 'test', CURRENT_TIMESTAMP)
+      ,('00000000-0000-0000-0000-000000000003', parsedatetime('2019-04-20T00:00:00+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), parsedatetime('2019-04-21T23:59:59+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), 'xxx', 'XXX', 'test', CURRENT_TIMESTAMP)
+      ,('00000000-0000-0000-0000-000000000004', parsedatetime('2019-06-01T00:00:00+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), parsedatetime('2019-06-05T23:59:59+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), 'yyy', 'YYY', 'test', CURRENT_TIMESTAMP)
+      ,('00000000-0000-0000-0000-000000000005', parsedatetime('2019-09-01T00:00:00+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), parsedatetime('2019-09-30T23:59:59+02:00', 'yyyy-MM-dd''T''HH:mm:ssX'), 'zzz', 'ZZZ', 'test', CURRENT_TIMESTAMP);
