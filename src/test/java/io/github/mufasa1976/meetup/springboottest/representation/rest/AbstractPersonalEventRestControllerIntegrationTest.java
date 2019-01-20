@@ -35,8 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @Rollback
 abstract class AbstractPersonalEventRestControllerIntegrationTest {
-  public static final String SQL_FILE = "classpath:/sql/findAll.sql";
-  
+  private static final String SQL_FILE = "classpath:/sql/findAll.sql";
   private static final ZoneId VIENNA = ZoneId.of("Europe/Vienna");
 
   @Autowired
@@ -90,7 +89,7 @@ abstract class AbstractPersonalEventRestControllerIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void findAll_OK_filteredBy_header() throws Exception {
     web.perform(get(PERSONAL_EVENTS)
         .param("header", "XXX")
@@ -108,7 +107,7 @@ abstract class AbstractPersonalEventRestControllerIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void findAll_OK_pageSizeIs_2() throws Exception {
     web.perform(get(PERSONAL_EVENTS)
         .param("size", "2")
@@ -141,7 +140,7 @@ abstract class AbstractPersonalEventRestControllerIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void getOne_OK() throws Exception {
     web.perform(get(PERSONAL_EVENT, "00000000-0000-0000-0000-000000000003")
         .with(httpBasic("user", "password")))

@@ -26,6 +26,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @WithMockUser
 abstract class AbstractPersonalEventServiceIntegrationTest {
+  private static final String SQL_FILE = "classpath:/sql/findAll.sql";
   private static final ZoneId VIENNA = ZoneId.of("Europe/Vienna");
 
   @Autowired
@@ -35,7 +36,7 @@ abstract class AbstractPersonalEventServiceIntegrationTest {
   private PersonalEventRepository repository;
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void findAll_OK_unfiltered() {
     assertThat(service.findAll(PersonalEventQuery.builder().build(), Pageable.unpaged()))
         .hasSize(5)
@@ -79,7 +80,7 @@ abstract class AbstractPersonalEventServiceIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void findAll_OK_filterBy_header() {
     assertThat(service.findAll(PersonalEventQuery
         .builder()
@@ -102,7 +103,7 @@ abstract class AbstractPersonalEventServiceIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void findAll_OK_pagedSizeIs_2() {
     assertThat(service.findAll(PersonalEventQuery.builder().build(), PageRequest.of(0, 2)))
         .hasSize(2)
@@ -134,7 +135,7 @@ abstract class AbstractPersonalEventServiceIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void getOne_OK() {
     assertThat(service.getOne(UUID.fromString("00000000-0000-0000-0000-000000000001")))
         .isNotEmpty()
@@ -181,7 +182,7 @@ abstract class AbstractPersonalEventServiceIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   @SuppressWarnings("unchecked")
   public void update_OK() {
     final UUID reference = UUID.fromString("00000000-0000-0000-0000-000000000003");
@@ -217,7 +218,7 @@ abstract class AbstractPersonalEventServiceIntegrationTest {
   }
 
   @Test
-  @Sql("classpath:/sql/findAll.sql")
+  @Sql(SQL_FILE)
   public void delete_OK() {
     final UUID reference = UUID.fromString("00000000-0000-0000-0000-000000000003");
     service.delete(reference);
