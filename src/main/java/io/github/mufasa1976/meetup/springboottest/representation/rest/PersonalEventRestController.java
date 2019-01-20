@@ -1,6 +1,5 @@
 package io.github.mufasa1976.meetup.springboottest.representation.rest;
 
-import io.github.mufasa1976.meetup.springboottest.Routes;
 import io.github.mufasa1976.meetup.springboottest.domains.PersonalEvent;
 import io.github.mufasa1976.meetup.springboottest.queries.PersonalEventQuery;
 import io.github.mufasa1976.meetup.springboottest.services.PersonalEventService;
