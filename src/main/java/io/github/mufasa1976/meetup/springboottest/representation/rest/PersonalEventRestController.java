@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import static io.github.mufasa1976.meetup.springboottest.Routes.PERSONAL_EVENT;
 import static io.github.mufasa1976.meetup.springboottest.Routes.PERSONAL_EVENTS;
+import static io.github.mufasa1976.meetup.springboottest.Routes.Param.REFERENCE;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
@@ -30,7 +31,7 @@ public class PersonalEventRestController {
   }
 
   @GetMapping(PERSONAL_EVENT)
-  public ResponseEntity<PersonalEvent> getOne(@PathVariable("reference") UUID reference) {
+  public ResponseEntity<PersonalEvent> getOne(@PathVariable(REFERENCE) UUID reference) {
     return service.getOne(reference)
                   .map(ResponseEntity::ok)
                   .orElseGet(ResponseEntity.notFound()::build);
