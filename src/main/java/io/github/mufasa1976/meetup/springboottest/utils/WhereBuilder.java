@@ -4,6 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.DateTimePath;
 import com.querydsl.core.types.dsl.StringPath;
+import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
@@ -13,10 +14,21 @@ import java.time.ZoneId;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class WhereBuilder {
+import static lombok.AccessLevel.PRIVATE;
+
+@NoArgsConstructor(access = PRIVATE)
+public final class WhereBuilder {
   private static final String DOUBLE_QUOTE = "\"";
 
   private final BooleanBuilder predicate = new BooleanBuilder();
+
+  public static WhereBuilder create() {
+    return new WhereBuilder();
+  }
+
+  public static Predicate withoutAnyFilter() {
+    return new BooleanBuilder();
+  }
 
   public WhereBuilder googleLike(String value, StringPath... paths) {
     Optional.ofNullable(value)

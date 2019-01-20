@@ -65,7 +65,7 @@ abstract class AbstractPersonalEventServiceUnitTest {
                                .body("some other Body")
                                .build()
         ).collect(Collectors.toList()), Pageable.unpaged(), 2);
-    when(getRepository().findAll(eq(new WhereBuilder().where()), eq(PageRequest.of(0, 20))))
+    when(getRepository().findAll(eq(WhereBuilder.withoutAnyFilter()), eq(PageRequest.of(0, 20))))
         .thenReturn(page);
     when(getPagedResourceAssembler().toResource(eq(page), eq(getResourceAssembler())))
         .thenReturn(new PagedResources<>(

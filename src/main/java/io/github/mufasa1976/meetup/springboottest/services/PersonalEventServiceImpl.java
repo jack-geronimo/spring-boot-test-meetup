@@ -36,13 +36,13 @@ public class PersonalEventServiceImpl implements PersonalEventService {
   @Override
   public PagedResources<PersonalEvent> findAll(PersonalEventQuery query, Pageable pageable) {
     Page<PersonalEventEntity> page = repository.findAll(
-        new WhereBuilder()
-            .googleLikeIgnoringCase(query.getSearch(), personalEventEntity.header, personalEventEntity.body)
-            .googleLikeIgnoringCase(query.getHeader(), personalEventEntity.header)
-            .googleLikeIgnoringCase(query.getBody(), personalEventEntity.body)
-            .lowerThanOrEqualToStartOfDay(query.getFrom(), personalEventEntity.from, query.getZoneId())
-            .greaterThanOrEqualToEndOfDay(query.getTo(), personalEventEntity.to, query.getZoneId())
-            .where(),
+        WhereBuilder.create()
+                    .googleLikeIgnoringCase(query.getSearch(), personalEventEntity.header, personalEventEntity.body)
+                    .googleLikeIgnoringCase(query.getHeader(), personalEventEntity.header)
+                    .googleLikeIgnoringCase(query.getBody(), personalEventEntity.body)
+                    .lowerThanOrEqualToStartOfDay(query.getFrom(), personalEventEntity.from, query.getZoneId())
+                    .greaterThanOrEqualToEndOfDay(query.getTo(), personalEventEntity.to, query.getZoneId())
+                    .where(),
         pageable);
     return pagedResourcesAssembler.toResource(page, resourceAssembler);
   }
