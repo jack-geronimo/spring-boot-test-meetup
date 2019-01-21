@@ -166,6 +166,7 @@
             <include>**/*Test.java</include>
             <include>**/*TestWithoutSpring.java</include>
             <include>**/*TestWithSpring.java</include>
+            <include>**/*TestWithSpyBean.java</include>
           </includes>
         </configuration>
       </plugin>
