@@ -22,13 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@ContextConfiguration(classes = PersonalEventServiceIntegrationTestWithDataJpaTest.Configuration.class)
+@ContextConfiguration(classes = {PersonalEventServiceIntegrationTestWithDataJpaTest.Configuration.class, PersonalEventServiceImpl.class, PersonalEventResourceAssembler.class})
 @TestPropertySource(properties = "spring.jpa.show-sql=true")
 public class PersonalEventServiceIntegrationTestWithDataJpaTest extends AbstractPersonalEventServiceIntegrationTest {
   @TestConfiguration
   @Import(DatabaseConfiguration.class)
-  @ComponentScan(basePackageClasses = PersonalEventService.class, includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = PersonalEventServiceImpl.class))
-  @ComponentScan(basePackageClasses = PersonalEventResourceAssembler.class, includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = PersonalEventResourceAssembler.class))
   @EnableSpringDataWebSupport
   @EnableAutoConfiguration
   public static class Configuration {}
@@ -36,6 +34,6 @@ public class PersonalEventServiceIntegrationTestWithDataJpaTest extends Abstract
   @Before
   public void setUp() {
     HttpServletRequest request = new MockHttpServletRequest();
-    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request)); // needed by PagedResourcesAssembler
   }
 }

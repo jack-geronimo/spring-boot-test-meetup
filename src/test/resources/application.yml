@@ -4,3 +4,13 @@ spring:
       password: password
   main:
     banner-mode: "off"
+
+feign:
+  client:
+    config:
+      star-wars:
+        loggerLevel: full
+
+logging:
+  level:
+    io.github.mufasa1976.meetup.springboottest.cients.StarWarsClient: debug

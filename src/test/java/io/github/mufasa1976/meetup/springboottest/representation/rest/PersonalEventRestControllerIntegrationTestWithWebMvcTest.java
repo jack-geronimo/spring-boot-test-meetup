@@ -5,6 +5,7 @@ import io.github.mufasa1976.meetup.springboottest.config.DatabaseConfiguration;
 import io.github.mufasa1976.meetup.springboottest.config.SecurityConfiguration;
 import io.github.mufasa1976.meetup.springboottest.services.PersonalEventService;
 import io.github.mufasa1976.meetup.springboottest.services.PersonalEventServiceImpl;
+import io.github.mufasa1976.meetup.springboottest.services.StarWarsServiceImpl;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,7 +25,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class PersonalEventRestControllerIntegrationTestWithWebMvcTest extends AbstractPersonalEventRestControllerIntegrationTest {
   @TestConfiguration
   @Import({ DatabaseConfiguration.class, SecurityConfiguration.class })
-  @ComponentScan(basePackageClasses = PersonalEventService.class, includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = PersonalEventServiceImpl.class))
+  @ComponentScan(basePackageClasses = PersonalEventService.class, useDefaultFilters = false, includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = PersonalEventServiceImpl.class))
   @ComponentScan(basePackageClasses = PersonalEventResourceAssembler.class, includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = PersonalEventResourceAssembler.class))
   @EnableAutoConfiguration
   @EnableSpringDataWebSupport

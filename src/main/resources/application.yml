@@ -2,3 +2,24 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+  security:
+    user:
+      password: password
+
+feign:
+  client:
+    config:
+      star-wars:
+        loggerLevel: full
+
+star-wars:
+  ribbon:
+    listOfServers: https://swapi.co
+
+ribbon:
+  ConnectTimeout: 15_000 # 15 secs
+  ReadTimeout: 10_000 # 10 secs
+
+logging:
+  level:
+    io.github.mufasa1976.meetup.springboottest.cients.StarWarsClient: debug
