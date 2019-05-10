@@ -1,4 +1,4 @@
-package io.github.mufasa1976.meetup.springboottest.services;
+package io.github.mufasa1976.meetup.springboottest.services.impl;
 
 import io.github.mufasa1976.meetup.springboottest.assembler.PersonalEventResourceAssembler;
 import io.github.mufasa1976.meetup.springboottest.domains.PersonalEvent;
@@ -6,6 +6,7 @@ import io.github.mufasa1976.meetup.springboottest.entities.PersonalEventEntity;
 import io.github.mufasa1976.meetup.springboottest.exceptions.RowNotFoundException;
 import io.github.mufasa1976.meetup.springboottest.queries.PersonalEventQuery;
 import io.github.mufasa1976.meetup.springboottest.repositories.PersonalEventRepository;
+import io.github.mufasa1976.meetup.springboottest.services.PersonalEventService;
 import io.github.mufasa1976.meetup.springboottest.utils.WhereBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

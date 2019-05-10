@@ -2,13 +2,12 @@ package io.github.mufasa1976.meetup.springboottest.services;
 
 import io.github.mufasa1976.meetup.springboottest.assembler.PersonalEventResourceAssembler;
 import io.github.mufasa1976.meetup.springboottest.config.DatabaseConfiguration;
+import io.github.mufasa1976.meetup.springboottest.services.impl.PersonalEventServiceImpl;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.mock.web.MockHttpServletRequest;

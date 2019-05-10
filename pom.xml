@@ -19,6 +19,9 @@
     <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
     <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     <query-dsl.version>4.2.1</query-dsl.version>
+    <jaxws.version>2.3.1</jaxws.version>
+
+    <cxf-codegen-plugin.version>3.3.1</cxf-codegen-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -54,6 +57,19 @@
         <groupId>com.querydsl</groupId>
         <artifactId>querydsl-jpa</artifactId>
         <version>${query-dsl.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sun.xml.ws</groupId>
+        <artifactId>jaxws-rt</artifactId>
+        <version>${jaxws.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.ws</groupId>
+        <artifactId>rt</artifactId>
+        <version>${jaxws.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -107,6 +123,12 @@
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
 
+    <!-- Spring WebService -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web-services</artifactId>
+    </dependency>
+
     <!-- Spring Cloud -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -129,6 +151,28 @@
     <dependency>
       <groupId>com.querydsl</groupId>
       <artifactId>querydsl-jpa</artifactId>
+    </dependency>
+
+    <!-- Apache Commons -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+
+    <!-- Module: javax.xml.bind -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+    </dependency>
+
+    <!-- Module: javax.xml.ws -->
+    <dependency>
+      <groupId>javax.xml.ws</groupId>
+      <artifactId>jaxws-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.jws</groupId>
+      <artifactId>javax.jws-api</artifactId>
     </dependency>
 
     <!-- Runtime Dependencies -->
@@ -154,6 +198,20 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!-- Module: java.xml.bind -->
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Module: java.xml.ws -->
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>rt</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
     <!-- Test Dependencies -->
 
     <!-- Spring -->
@@ -170,6 +228,27 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-contract-wiremock</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Spring WebService Test -->
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Mustache -->
+    <dependency>
+      <groupId>com.samskivert</groupId>
+      <artifactId>jmustache</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- XMLUnit -->
+    <dependency>
+      <groupId>org.xmlunit</groupId>
+      <artifactId>xmlunit-core</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -191,6 +270,12 @@
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>${spring-boot.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-codegen-plugin</artifactId>
+          <version>${cxf-codegen-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -220,6 +305,35 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Generate CalculatorService Sources from WSDL</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+            <configuration>
+              <encoding>UTF-8</encoding>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdl>src/main/resources/wsdl/CalculatorService.wsdl</wsdl>
+                  <bindingFiles>
+                    <bindingFile>src/main/resources/wsdl/CalculatorService.xjb</bindingFile>
+                  </bindingFiles>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>com.dneonline.calculator</extraarg>
+                  </extraargs>
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

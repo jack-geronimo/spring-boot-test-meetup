@@ -3,6 +3,7 @@ package io.github.mufasa1976.meetup.springboottest.services;
 import io.github.mufasa1976.meetup.springboottest.assembler.PersonalEventResourceAssembler;
 import io.github.mufasa1976.meetup.springboottest.entities.PersonalEventEntity;
 import io.github.mufasa1976.meetup.springboottest.repositories.PersonalEventRepository;
+import io.github.mufasa1976.meetup.springboottest.services.impl.PersonalEventServiceImpl;
 import lombok.Getter;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

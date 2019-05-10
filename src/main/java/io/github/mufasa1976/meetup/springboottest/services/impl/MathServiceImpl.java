@@ -1,5 +1,6 @@
-package io.github.mufasa1976.meetup.springboottest.services;
+package io.github.mufasa1976.meetup.springboottest.services.impl;
 
+import io.github.mufasa1976.meetup.springboottest.services.MathService;
 import org.springframework.stereotype.Service;
 
 @Service

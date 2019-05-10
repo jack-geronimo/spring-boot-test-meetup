@@ -14,3 +14,5 @@ feign:
 logging:
   level:
     io.github.mufasa1976.meetup.springboottest.cients.StarWarsClient: debug
+    org.springframework.ws.client.MessageTracing.sent: trace
+    org.springframework.ws.client.MessageTracing.received: trace

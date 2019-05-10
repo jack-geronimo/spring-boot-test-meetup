@@ -1,5 +1,7 @@
-package io.github.mufasa1976.meetup.springboottest.services;
+package io.github.mufasa1976.meetup.springboottest.services.impl;
 
+import io.github.mufasa1976.meetup.springboottest.services.ExtendedMathService;
+import io.github.mufasa1976.meetup.springboottest.services.MathService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

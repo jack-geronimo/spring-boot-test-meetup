@@ -10,12 +10,25 @@ public final class Routes {
   public static final class Param {
     public static final String
         REFERENCE = "reference",
-        ID = "id";
+        ID = "id",
+        AUGEND = "augend",
+        ADDEND = "addend",
+        MINUEND = "minuend",
+        SUBTRAHEND = "subtrahend",
+        MULTIPLIER = "multiplier",
+        MULTIPLICAND = "multiplicand",
+        DIVIDEND = "dividend",
+        DIVISOR = "divisor";
   }
 
   public static final String
       API = "/api",
       PERSONAL_EVENTS = API + "/personal-events",
       PERSONAL_EVENT = PERSONAL_EVENTS + "/{" + Param.REFERENCE + "}",
-      PERSON = API + "/persons/{" + Param.ID + "}";
+      PERSON = API + "/persons/{" + Param.ID + "}",
+      CALCULATOR = API + "/calculator",
+      CALCULATOR_ADD = CALCULATOR + "/add/{" + Param.AUGEND + "}/{" + Param.ADDEND + "}",
+      CALCULATOR_SUBTRACT = CALCULATOR + "/subtract/{" + Param.MINUEND + "}/{" + Param.SUBTRAHEND + "}",
+      CALCULATOR_MULTIPLY = CALCULATOR + "/multiply/{" + Param.MULTIPLIER + "}/{" + Param.MULTIPLICAND + "}",
+      CALCULATOR_DIVIDE = CALCULATOR + "/divide/{" + Param.DIVIDEND + "}/{" + Param.DIVISOR + "}";
 }

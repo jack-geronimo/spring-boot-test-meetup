@@ -1,5 +1,6 @@
 package io.github.mufasa1976.meetup.springboottest.services;
 
+import io.github.mufasa1976.meetup.springboottest.services.impl.MathServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 

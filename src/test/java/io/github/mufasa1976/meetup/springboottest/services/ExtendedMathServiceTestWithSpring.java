@@ -1,5 +1,6 @@
 package io.github.mufasa1976.meetup.springboottest.services;
 
+import io.github.mufasa1976.meetup.springboottest.services.impl.ExtendedMathServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

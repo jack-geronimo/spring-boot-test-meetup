@@ -25,7 +25,7 @@ import static io.github.mufasa1976.meetup.springboottest.domains.starwars.Person
 import static org.assertj.core.api.Assertions.assertThat;
 
 @AutoConfigureJson
-abstract class AbstractStarWarsIntegrationTest {
+abstract class AbstractStarWarsServiceIntegrationTest {
   @Autowired
   private StarWarsService starWarsService;
 

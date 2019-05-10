@@ -6,7 +6,7 @@ import com.netflix.loadbalancer.ServerList;
 import io.github.mufasa1976.meetup.springboottest.config.FeignConfiguration;
 import io.github.mufasa1976.meetup.springboottest.config.SecurityConfiguration;
 import io.github.mufasa1976.meetup.springboottest.services.StarWarsService;
-import io.github.mufasa1976.meetup.springboottest.services.StarWarsServiceImpl;
+import io.github.mufasa1976.meetup.springboottest.services.impl.StarWarsServiceImpl;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
@@ -27,15 +27,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(StarWarsRestController.class)
-@ContextConfiguration(classes = StarWarsRestControllerIntegrationTestWithMockMvcTest.Configuration.class)
+@ContextConfiguration(classes = StarWarsRestControllerIntegrationTestWithWebMvcTest.Configuration.class)
 @WithMockUser
-public class StarWarsRestControllerIntegrationTestWithMockMvcTest extends AbstractStarWarsRestControllerIntegrationTest {
+public class StarWarsRestControllerIntegrationTestWithWebMvcTest extends AbstractStarWarsRestControllerIntegrationTest {
   @ClassRule
   public static WireMockRule WIREMOCK = new WireMockRule(WireMockSpring.options().dynamicHttpsPort());
 
   @TestConfiguration
-  @Import({FeignConfiguration.class, SecurityConfiguration.class})
-  @ImportAutoConfiguration({FeignAutoConfiguration.class, RibbonAutoConfiguration.class, FeignRibbonClientAutoConfiguration.class})
+  @Import({ FeignConfiguration.class, SecurityConfiguration.class })
+  @ImportAutoConfiguration({ FeignAutoConfiguration.class, RibbonAutoConfiguration.class, FeignRibbonClientAutoConfiguration.class })
   @ComponentScan(basePackageClasses = StarWarsService.class, useDefaultFilters = false, includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = StarWarsServiceImpl.class))
   public static class Configuration {
     @Bean

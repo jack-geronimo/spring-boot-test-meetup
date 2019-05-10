@@ -1,6 +1,7 @@
 package io.github.mufasa1976.meetup.springboottest.services;
 
 import io.github.mufasa1976.meetup.springboottest.cients.StarWarsClient;
+import io.github.mufasa1976.meetup.springboottest.services.impl.StarWarsServiceImpl;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;

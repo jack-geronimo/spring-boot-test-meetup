@@ -1,7 +1,8 @@
-package io.github.mufasa1976.meetup.springboottest.services;
+package io.github.mufasa1976.meetup.springboottest.services.impl;
 
 import io.github.mufasa1976.meetup.springboottest.cients.StarWarsClient;
 import io.github.mufasa1976.meetup.springboottest.domains.starwars.Person;
+import io.github.mufasa1976.meetup.springboottest.services.StarWarsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -4,8 +4,7 @@ import io.github.mufasa1976.meetup.springboottest.assembler.PersonalEventResourc
 import io.github.mufasa1976.meetup.springboottest.config.DatabaseConfiguration;
 import io.github.mufasa1976.meetup.springboottest.config.SecurityConfiguration;
 import io.github.mufasa1976.meetup.springboottest.services.PersonalEventService;
-import io.github.mufasa1976.meetup.springboottest.services.PersonalEventServiceImpl;
-import io.github.mufasa1976.meetup.springboottest.services.StarWarsServiceImpl;
+import io.github.mufasa1976.meetup.springboottest.services.impl.PersonalEventServiceImpl;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

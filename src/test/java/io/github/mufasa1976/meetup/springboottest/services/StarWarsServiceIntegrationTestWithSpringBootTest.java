@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StarWarsServiceIntegrationTestWithSpringBootTest extends AbstractStarWarsIntegrationTest {
+public class StarWarsServiceIntegrationTestWithSpringBootTest extends AbstractStarWarsServiceIntegrationTest {
   @ClassRule
   public static WireMockRule WIREMOCK = new WireMockRule(WireMockSpring.options().dynamicHttpsPort());
 
