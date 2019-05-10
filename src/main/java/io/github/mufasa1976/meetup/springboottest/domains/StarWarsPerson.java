@@ -1,18 +1,17 @@
-package io.github.mufasa1976.meetup.springboottest.domains.starwars;
+package io.github.mufasa1976.meetup.springboottest.domains;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.github.mufasa1976.meetup.springboottest.converter.GenderDeserializer;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
-@Value
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Person {
+public class StarWarsPerson {
   @RequiredArgsConstructor
   @JsonDeserialize(using = GenderDeserializer.class)
   public enum Gender {

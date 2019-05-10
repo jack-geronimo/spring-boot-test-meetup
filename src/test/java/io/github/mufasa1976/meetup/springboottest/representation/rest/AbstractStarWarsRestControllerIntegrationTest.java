@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJson;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static io.github.mufasa1976.meetup.springboottest.domains.starwars.Person.Gender.MALE;
+import static io.github.mufasa1976.meetup.springboottest.domains.StarWarsPerson.Gender.MALE;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -27,7 +27,7 @@ abstract class AbstractStarWarsRestControllerIntegrationTest {
 
   @Data
   @Builder
-  private static class StarWarsPerson {
+  private static class StarWarsTestPerson {
     private String name;
     @JsonProperty("birth_year")
     private String birthYear;
@@ -42,13 +42,13 @@ abstract class AbstractStarWarsRestControllerIntegrationTest {
   public void getPerson_OK() throws Exception {
     WireMock.stubFor(WireMock.get(WireMock.urlPathEqualTo("/api/people/1/"))
                              .willReturn(WireMock.okJson(objectMapper.writeValueAsString(
-                                 StarWarsPerson.builder()
-                                               .name("Luke Skywalker")
-                                               .gender("male")
-                                               .birthYear("19BCC")
-                                               .eyeColor("blue")
-                                               .hairColor("brown")
-                                               .build()))));
+                                 StarWarsTestPerson.builder()
+                                                   .name("Luke Skywalker")
+                                                   .gender("male")
+                                                   .birthYear("19BCC")
+                                                   .eyeColor("blue")
+                                                   .hairColor("brown")
+                                                   .build()))));
 
     web.perform(get(Routes.PERSON, "1"))
        .andExpect(status().isOk())
@@ -57,6 +57,8 @@ abstract class AbstractStarWarsRestControllerIntegrationTest {
        .andExpect(jsonPath("gender").value(is(MALE.name())))
        .andExpect(jsonPath("birth_year").value(is("19BCC")))
        .andExpect(jsonPath("eye_color").value(is("blue")));
+
+    WireMock.verify(WireMock.getRequestedFor(WireMock.urlPathEqualTo("/api/people/1/")));
   }
 
   @Test
@@ -66,5 +68,7 @@ abstract class AbstractStarWarsRestControllerIntegrationTest {
 
     web.perform(get(Routes.PERSON, "1"))
        .andExpect(status().isNotFound());
+
+    WireMock.verify(WireMock.getRequestedFor(WireMock.urlPathEqualTo("/api/people/1/")));
   }
 }

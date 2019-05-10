@@ -14,7 +14,7 @@ public final class Routes {
   }
 
   public static final String
-      API = "/api",
+      API = "/api/rest",
       PERSONAL_EVENTS = API + "/personal-events",
       PERSONAL_EVENT = PERSONAL_EVENTS + "/{" + Param.REFERENCE + "}",
       PERSON = API + "/persons/{" + Param.ID + "}";

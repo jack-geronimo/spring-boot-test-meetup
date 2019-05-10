@@ -23,3 +23,6 @@ ribbon:
 logging:
   level:
     io.github.mufasa1976.meetup.springboottest.cients.StarWarsClient: debug
+cxf:
+  path: /api/ws
+

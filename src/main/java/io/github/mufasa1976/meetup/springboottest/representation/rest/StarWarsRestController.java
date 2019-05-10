@@ -1,7 +1,7 @@
 package io.github.mufasa1976.meetup.springboottest.representation.rest;
 
 import io.github.mufasa1976.meetup.springboottest.Routes;
-import io.github.mufasa1976.meetup.springboottest.domains.starwars.Person;
+import io.github.mufasa1976.meetup.springboottest.domains.StarWarsPerson;
 import io.github.mufasa1976.meetup.springboottest.services.StarWarsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class StarWarsRestController {
   private final StarWarsService starWarsService;
 
   @GetMapping(Routes.PERSON)
-  public ResponseEntity<Person> getPerson(@PathVariable(Routes.Param.ID) String id) {
+  public ResponseEntity<StarWarsPerson> getPerson(@PathVariable(Routes.Param.ID) String id) {
     return starWarsService.getPerson(id)
                           .map(ResponseEntity::ok)
                           .orElseGet(ResponseEntity.notFound()::build);

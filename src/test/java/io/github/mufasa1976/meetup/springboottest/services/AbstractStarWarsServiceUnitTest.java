@@ -1,12 +1,12 @@
 package io.github.mufasa1976.meetup.springboottest.services;
 
 import io.github.mufasa1976.meetup.springboottest.cients.StarWarsClient;
-import io.github.mufasa1976.meetup.springboottest.domains.starwars.Person;
+import io.github.mufasa1976.meetup.springboottest.domains.StarWarsPerson;
 import org.junit.Test;
 
 import java.util.Optional;
 
-import static io.github.mufasa1976.meetup.springboottest.domains.starwars.Person.Gender.MALE;
+import static io.github.mufasa1976.meetup.springboottest.domains.StarWarsPerson.Gender.MALE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -20,16 +20,16 @@ abstract class AbstractStarWarsServiceUnitTest {
   @SuppressWarnings("unchecked")
   public void getPerson_OK() throws Exception {
     when(getClient().getPerson("1"))
-        .thenReturn(Optional.of(Person.builder()
-                                      .name("Luke Skywalker")
-                                      .gender(MALE)
-                                      .birthYear("19BBY")
-                                      .eyeColor("blue")
-                                      .build()));
+        .thenReturn(Optional.of(StarWarsPerson.builder()
+                                              .name("Luke Skywalker")
+                                              .gender(MALE)
+                                              .birthYear("19BBY")
+                                              .eyeColor("blue")
+                                              .build()));
 
     assertThat(getService().getPerson("1")).isPresent()
                                            .get()
-                                           .extracting(Person::getName, Person::getGender, Person::getBirthYear, Person::getEyeColor)
+                                           .extracting(StarWarsPerson::getName, StarWarsPerson::getGender, StarWarsPerson::getBirthYear, StarWarsPerson::getEyeColor)
                                            .containsOnly("Luke Skywalker", MALE, "19BBY", "blue");
   }
 
