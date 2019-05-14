@@ -17,20 +17,20 @@ import java.util.stream.Stream;
 import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)
-public final class WhereBuilder {
+public final class WhereClauseBuilder {
   private static final String DOUBLE_QUOTE = "\"";
 
   private final BooleanBuilder predicate = new BooleanBuilder();
 
-  public static WhereBuilder create() {
-    return new WhereBuilder();
+  public static WhereClauseBuilder create() {
+    return new WhereClauseBuilder();
   }
 
   public static Predicate withoutAnyFilter() {
     return new BooleanBuilder();
   }
 
-  public WhereBuilder googleLike(String value, StringPath... paths) {
+  public WhereClauseBuilder googleLike(String value, StringPath... paths) {
     Optional.ofNullable(value)
             .filter(stringValue -> !StringUtils.isEmpty(stringValue))
             .map(stringValue -> Stream.of(paths)
@@ -45,7 +45,7 @@ public final class WhereBuilder {
     return this;
   }
 
-  public WhereBuilder googleLikeIgnoringCase(String value, StringPath... paths) {
+  public WhereClauseBuilder googleLikeIgnoringCase(String value, StringPath... paths) {
     Optional.ofNullable(value)
             .filter(val -> !StringUtils.isEmpty(val))
             .map(stringValue -> Stream.of(paths)
@@ -60,7 +60,7 @@ public final class WhereBuilder {
     return this;
   }
 
-  public WhereBuilder lowerThanOrEqualToStartOfDay(LocalDate value, DateTimePath<OffsetDateTime> path, ZoneId zoneId) {
+  public WhereClauseBuilder lowerThanOrEqualToStartOfDay(LocalDate value, DateTimePath<OffsetDateTime> path, ZoneId zoneId) {
     Optional.ofNullable(value)
             .map(localDate -> localDate.atTime(LocalTime.MIN))
             .map(localDateTime -> OffsetDateTime.of(localDateTime, (zoneId != null ? zoneId : ZoneId.systemDefault()).getRules().getOffset(localDateTime)))
@@ -69,11 +69,11 @@ public final class WhereBuilder {
     return this;
   }
 
-  public WhereBuilder lowerThanOrEqualToStartOfDay(LocalDate value, DateTimePath<OffsetDateTime> path) {
+  public WhereClauseBuilder lowerThanOrEqualToStartOfDay(LocalDate value, DateTimePath<OffsetDateTime> path) {
     return lowerThanOrEqualToStartOfDay(value, path, ZoneId.systemDefault());
   }
 
-  public WhereBuilder greaterThanOrEqualToEndOfDay(LocalDate value, DateTimePath<OffsetDateTime> path, ZoneId zoneId) {
+  public WhereClauseBuilder greaterThanOrEqualToEndOfDay(LocalDate value, DateTimePath<OffsetDateTime> path, ZoneId zoneId) {
     Optional.ofNullable(value)
             .map(localDate -> localDate.atTime(LocalTime.MAX))
             .map(localDateTime -> OffsetDateTime.of(localDateTime, (zoneId != null ? zoneId : ZoneId.systemDefault()).getRules().getOffset(localDateTime)))
@@ -82,11 +82,11 @@ public final class WhereBuilder {
     return this;
   }
 
-  public WhereBuilder greaterThanOrEqualToEndOfDay(LocalDate value, DateTimePath<OffsetDateTime> path) {
+  public WhereClauseBuilder greaterThanOrEqualToEndOfDay(LocalDate value, DateTimePath<OffsetDateTime> path) {
     return greaterThanOrEqualToEndOfDay(value, path, ZoneId.systemDefault());
   }
 
-  public Predicate where() {
+  public Predicate buildWhereClause() {
     return predicate;
   }
 }

@@ -7,7 +7,7 @@ import io.github.mufasa1976.meetup.springboottest.exceptions.RowNotFoundExceptio
 import io.github.mufasa1976.meetup.springboottest.queries.PersonalEventQuery;
 import io.github.mufasa1976.meetup.springboottest.repositories.PersonalEventRepository;
 import io.github.mufasa1976.meetup.springboottest.services.PersonalEventService;
-import io.github.mufasa1976.meetup.springboottest.utils.WhereBuilder;
+import io.github.mufasa1976.meetup.springboottest.utils.WhereClauseBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,13 +37,13 @@ public class PersonalEventServiceImpl implements PersonalEventService {
   @Override
   public PagedResources<PersonalEvent> findAll(PersonalEventQuery query, Pageable pageable) {
     Page<PersonalEventEntity> page = repository.findAll(
-        WhereBuilder.create()
-                    .googleLikeIgnoringCase(query.getSearch(), personalEventEntity.header, personalEventEntity.body)
-                    .googleLikeIgnoringCase(query.getHeader(), personalEventEntity.header)
-                    .googleLikeIgnoringCase(query.getBody(), personalEventEntity.body)
-                    .lowerThanOrEqualToStartOfDay(query.getFrom(), personalEventEntity.from, query.getZoneId())
-                    .greaterThanOrEqualToEndOfDay(query.getTo(), personalEventEntity.to, query.getZoneId())
-                    .where(),
+        WhereClauseBuilder.create()
+                          .googleLikeIgnoringCase(query.getSearch(), personalEventEntity.header, personalEventEntity.body)
+                          .googleLikeIgnoringCase(query.getHeader(), personalEventEntity.header)
+                          .googleLikeIgnoringCase(query.getBody(), personalEventEntity.body)
+                          .lowerThanOrEqualToStartOfDay(query.getFrom(), personalEventEntity.from, query.getZoneId())
+                          .greaterThanOrEqualToEndOfDay(query.getTo(), personalEventEntity.to, query.getZoneId())
+                          .buildWhereClause(),
         pageable);
     return pagedResourcesAssembler.toResource(page, resourceAssembler);
   }

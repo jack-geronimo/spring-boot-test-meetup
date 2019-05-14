@@ -7,7 +7,7 @@ import io.github.mufasa1976.meetup.springboottest.exceptions.RowNotFoundExceptio
 import io.github.mufasa1976.meetup.springboottest.queries.PersonalEventQuery;
 import io.github.mufasa1976.meetup.springboottest.repositories.PersonalEventRepository;
 import io.github.mufasa1976.meetup.springboottest.representation.rest.PersonalEventRestController;
-import io.github.mufasa1976.meetup.springboottest.utils.WhereBuilder;
+import io.github.mufasa1976.meetup.springboottest.utils.WhereClauseBuilder;
 import org.junit.Test;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -65,7 +65,7 @@ abstract class AbstractPersonalEventServiceUnitTest {
                                .body("some other Body")
                                .build()
         ).collect(Collectors.toList()), Pageable.unpaged(), 2);
-    when(getRepository().findAll(eq(WhereBuilder.withoutAnyFilter()), eq(PageRequest.of(0, 20))))
+    when(getRepository().findAll(eq(WhereClauseBuilder.withoutAnyFilter()), eq(PageRequest.of(0, 20))))
         .thenReturn(page);
     when(getPagedResourceAssembler().toResource(eq(page), eq(getResourceAssembler())))
         .thenReturn(new PagedResources<>(
